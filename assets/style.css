@@ -1,0 +1,56 @@
+main {
+   margin: 0;
+  }
+.navhighscore {
+    float: left;
+}
+.highscore {
+   
+}
+.inline {
+    display: inline;
+}
+.timer-count {
+text-align: center;
+}
+
+.quiz {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 5%;
+}
+  h1 {
+      font-size: 20px;
+      text-align: center;
+  }
+  h2 {
+      font-size: 60px;
+      margin: 0;
+  }
+  .timer-text {
+    padding: 5px;
+    border: 5px solid chocolate;
+  
+    background-color: burlywood;
+    float: right;
+  }
+button {
+    background: radial-gradient(circle, rgba(240,230,140,1) 0%, rgba(187,96,33,0.9542191876750701) 100%);
+    border-radius: 8px;
+    color: #13293d;
+    cursor: pointer;
+    font-size: 2em;
+    letter-spacing: 0.21px;
+    line-height: 16px;
+    max-width: 255px;
+    padding: 20px 52px;
+    text-align: center;
+    transition-duration: 0.15s;
+    transition-property: background-color;
+    transition-timing-function: linear;
+    margin-top: 0.6em;
+    align-self: center;
+  }

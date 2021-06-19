@@ -9,11 +9,16 @@ var timerCount;
 var timer;
 var isCorrect = false;
 var isIncorrect = false;
-var highscore = 0;
+var highscore;
+var questions = ["Q1", "Q2", "Q3", "Q4", "Q5"];
+var q = 0;
+var options = ["first question", "opt 2", "opt 3", "opt 4", "2nd question", "opt2.2", "option 3.2", "option 4.2", "3rd question", "opt 2.3", "option 3.3", "option 4.3", "4th question", "opt 2.4", "opt 3.4", "option 4.4", "5th question", "opt 2.5", "option 3.5", "option 4.5"];
+var currentoptions;
+var x = 0;
+var y = 4;
 
 
-
-startButton.addEventListener("click", startGame);
+startButton.addEventListener("click", startQuiz);
 
 getHighScore();
 
@@ -22,22 +27,21 @@ function getHighScore() {
     var storedHighScore = localStorage.getItem("highScore");
     // If stored value doesn't exist, set counter to 0
     if (storedHighScore === null) {
-      highscore = 0;
+        highscore = 0;
     } else {
-      // If a value is retrieved from client storage set the winCounter to that value
-      highscore = storedHighScore;
+        // If a value is retrieved from client storage set the highscore to that value
+        highscore = storedHighScore;
     }
-    //Render win count to page
+
     navHighScore.textContent = highscore;
-  }
-function startGame() {
+}
+function startQuiz() {
 
     timerCount = 15;
 
-    // renderBlanks()
-    // renderQuestion()
+    renderQuestion()
     startTimer()
-    
+
 }
 
 function startTimer() {
@@ -48,7 +52,6 @@ function startTimer() {
         if (timerCount > 0) {
             // Tests if win condition is met
             if (isCorrect && timerCount > 0) {
-                // Clears interval and stops timer
                 correctAnswer();
             }
             if (isIncorrect && timerCount > 0) {
@@ -61,54 +64,82 @@ function startTimer() {
             timerCount = 0;
             clearInterval(timer);
             timerElement.textContent = timerCount;
-            gameOver();
+            quizOver();
         }
     }, 1000);
 }
-
-function renderQuestion() {
-    for (var i = 0; i < todos.length; i++) {
-        var todo = todos[i];
-    
-        var li = document.createElement("li");
-        li.textContent = todo;
-        li.setAttribute("data-index", i);
-    
-        var button = document.createElement("button");
-        button.textContent = "Complete ✔️";
-    
-        li.appendChild(button);
-        todoList.appendChild(li);
-      }
-    // for (var i = 0; i < todos.length; i++) {
-    //     var todo = todos[i];
-    
-    //     var li = document.createElement("li");
-    //     li.textContent = todo;
-    //     li.setAttribute("data-index", i);
-    
-    //     var button = document.createElement("button");
-    //     button.textContent = "Complete ✔️";
-    
-    //     li.appendChild(button);
-    //     todoList.appendChild(li);
-    //   }
-}
-function checkCorrect() {
-    // If the word equals the blankLetters array when converted to string, set isWin to true
-    if (chosenWord === blanksLetters.join("")) {
-      // This value is used in the timer function to test if win condition is met
-      isCorrect = true;
+function currentOptions() {
+    if (y < 20) {
+        newoption = options.slice(x, y)
+        x = x + 4;
+        y = y + 4;
+        return newoption;
     }
-  }
+}
+function renderQuestion() {
+    quiz.textContent = " ";
+    var h2 = document.createElement("h2");
+    h2.setAttribute("data-index", q);
+    quiz.appendChild(h2);
+    h2.textContent = questions[q];
+    var ul = document.createElement("ul");
+    quiz.appendChild(ul);
+    currentoptions = currentOptions();
+
+    for (var i = 0; i < currentoptions.length; i++) {
+
+        var li = document.createElement("li");
+        li.setAttribute("data-index", i);
+        li.textContent = currentoptions[i];
+        ul.appendChild(li);
+    }
+    q = q + 1;
+}
+quiz.addEventListener("click", function (event) {
+    var element = event.target;
+
+    if (element.matches("li")) {
+        var index = element.parentElement.getAttribute("data-index");
+        console.log(index);
+    }
+})
+// if (element.matches("button") === true) {
+//     // Get its data-index value and remove the todo element from the list
+//     var index = element.parentElement.getAttribute("data-index");
+//     todos.splice(index, 1);
+
+// function checkCorrect() {
+//         // If the word equals the blankLetters array when converted to string, set isWin to true
+//         if (chosenWord === blanksLetters.join("")) {
+//             // This value is used in the timer function to test if win condition is met
+//             isCorrect = true;
+//         }
+//     }
 function correctAnswer() {
-score = score + 20;
-}
+        score = score + 20;
+    }
 
-function incorrectAnswer() {
+// function incorrectAnswer() {
 
-}
+//     }
 
-function gameOver() {
+// function quizOver() {
+//         q = 0;
 
-}
+//     }
+
+
+    // if (q === 0) {
+    //     currentoptions = options.slice(0, 4);
+    // }
+    // else if (q === 1) {
+    //     currentoptions = options.slice(4, 8);
+    // }
+    // else if (q === 2) {
+    //     currentoptions = options.slice(8, 12);
+    // }
+    // else if (q === 3) {
+    //     currentoptions = options.slice(12, 16);
+    // }
+    // else {
+    //     currentoptions = options.slice(16, 20);)

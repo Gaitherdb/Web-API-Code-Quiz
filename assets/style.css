@@ -12,6 +12,9 @@ main {
 /* .highscore {
    
 } */
+#feedback {
+    text-align: center;
+}
 .inline {
     display: inline;
 }

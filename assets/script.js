@@ -3,6 +3,7 @@ var startButton = document.querySelector(".start-button");
 var timerElement = document.querySelector(".timer-count");
 var navHighScore = document.querySelector(".highscore");
 var quiz = document.querySelector(".quiz");
+var feedBack = document.querySelector("#feedback");
 
 
 var score = 0;
@@ -18,6 +19,7 @@ var currentoptions;
 var x = 0;
 var y = 4;
 var h2;
+var h3;
 
 
 
@@ -56,16 +58,19 @@ function startTimer() {
         if (timerCount > 0) {
             // Tests if win condition is met
             if (isCorrect && timerCount > 0) {
-                isCorrect = false;
                 correctAnswer();
                 renderQuestion();
+                window.setTimeout(giveFeedBack, 1500)
+                isCorrect = false;
+
 
             }
             if (isIncorrect && timerCount > 0) {
                 timerCount -= 5;
-                isIncorrect = false;
-
+                incorrectAnswer();
                 renderQuestion();
+                window.setTimeout(giveFeedBack, 1500)
+                isIncorrect = false;
 
             }
             if (q == 6) {
@@ -84,6 +89,10 @@ function startTimer() {
             quizOver();
         }
     }, 1000);
+}
+function giveFeedBack() {
+    feedBack.style.display = "none";
+
 }
 function currentOptions() {
     if (y <= 20) {
@@ -126,15 +135,21 @@ quiz.addEventListener("click", function (event) {
     if (element.matches("li")) {
         var optionIndex = element.getAttribute("data-index");
         var questionIndex = h2.getAttribute("data-index");
-
+console.log(questionIndex);
+console.log(optionIndex);
         if (optionIndex === questionIndex) {
+            console.log(questionIndex);
+            console.log(optionIndex);
             isCorrect = true;
         }
-        else if (optionIndex === 2 && questionIndex === 4) {
+        else if (optionIndex == 2 && questionIndex == 4) {
             isCorrect = true;
+            console.log(questionIndex);
         }
         else {
             isIncorrect = true;
+            console.log(questionIndex);
+            console.log(optionIndex);
         }
     }
 })
@@ -152,13 +167,17 @@ quiz.addEventListener("click", function (event) {
 //     }
 function correctAnswer() {
     score = score + 20;
+console.log(q);
+    feedBack.textContent = "Correct!"
+    feedBack.style.display = "block";
 }
 
-// function incorrectAnswer() {
-
-//     }
+function incorrectAnswer() {
+    feedback.textContent = "Wrong!"
+    feedBack.style.display = "block";
+}
 function setHighScore() {
-    localStorage.setItem("highscore", highScore);
+    localStorage.setItem("highScore", highScore);
 }
 function quizOver() {
     q = 0;

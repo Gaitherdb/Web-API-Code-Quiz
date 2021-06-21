@@ -10,7 +10,7 @@ var timerCount;
 var timer;
 var isCorrect = false;
 var isIncorrect = false;
-var highscore;
+var highScore;
 var questions = ["Q1", "Q2", "Q3", "Q4", "Q5"];
 var q = 0;
 var options = ["first question", "opt 2", "opt 3", "opt 4", "2nd question", "opt2.2", "option 3.2", "option 4.2", "3rd question", "opt 2.3", "option 3.3", "option 4.3", "4th question", "opt 2.4", "opt 3.4", "option 4.4", "5th question", "opt 2.5", "option 3.5", "option 4.5"];
@@ -31,13 +31,13 @@ function getHighScore() {
     var storedHighScore = localStorage.getItem("highScore");
     // If stored value doesn't exist, set counter to 0
     if (storedHighScore === null) {
-        highscore = 0;
+        highScore = 0;
     } else {
         // If a value is retrieved from client storage set the highscore to that value
-        highscore = storedHighScore;
+        highScore = storedHighScore;
     }
 
-    navHighScore.textContent = highscore;
+    navHighScore.textContent = highScore;
 }
 function startQuiz() {
 
@@ -68,7 +68,7 @@ function startTimer() {
                 renderQuestion();
 
             }
-            if (q == 5) {
+            if (q == 6) {
                 quiz.textContent = " ";
                 console.log(q);
                 clearInterval(timer);
@@ -87,10 +87,10 @@ function startTimer() {
 }
 function currentOptions() {
     if (y <= 20) {
-        newoption = options.slice(x, y);
+        newOption = options.slice(x, y);
         x = x + 4;
         y = y + 4;
-        return newoption;
+        return newOption;
     }
 }
 function renderQuestion() {
@@ -158,11 +158,12 @@ function correctAnswer() {
 
 //     }
 function setHighScore() {
-    localStorage.setItem("highscore", highscore);
+    localStorage.setItem("highscore", highScore);
 }
 function quizOver() {
     q = 0;
     setHighScore();
+
 
 }
 

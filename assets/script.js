@@ -4,6 +4,7 @@ var timerElement = document.querySelector(".timer-count");
 var navHighScore = document.querySelector(".highscore");
 var quiz = document.querySelector(".quiz");
 
+
 var score = 0;
 var timerCount;
 var timer;
@@ -16,8 +17,11 @@ var options = ["first question", "opt 2", "opt 3", "opt 4", "2nd question", "opt
 var currentoptions;
 var x = 0;
 var y = 4;
+var h2;
 
 
+
+// console.log(q);
 startButton.addEventListener("click", startQuiz);
 
 getHighScore();
@@ -37,7 +41,7 @@ function getHighScore() {
 }
 function startQuiz() {
 
-    timerCount = 15;
+    timerCount = 45;
 
     renderQuestion()
     startTimer()
@@ -52,10 +56,23 @@ function startTimer() {
         if (timerCount > 0) {
             // Tests if win condition is met
             if (isCorrect && timerCount > 0) {
+                isCorrect = false;
                 correctAnswer();
+                renderQuestion();
+
             }
             if (isIncorrect && timerCount > 0) {
-                timerCount = timerCount - 5;
+                timerCount -= 5;
+                isIncorrect = false;
+
+                renderQuestion();
+
+            }
+            if (q == 5) {
+                quiz.textContent = " ";
+                console.log(q);
+                clearInterval(timer);
+                quizOver();
             }
         }
         // Tests if time has run out
@@ -69,8 +86,8 @@ function startTimer() {
     }, 1000);
 }
 function currentOptions() {
-    if (y < 20) {
-        newoption = options.slice(x, y)
+    if (y <= 20) {
+        newoption = options.slice(x, y);
         x = x + 4;
         y = y + 4;
         return newoption;
@@ -78,29 +95,47 @@ function currentOptions() {
 }
 function renderQuestion() {
     quiz.textContent = " ";
-    var h2 = document.createElement("h2");
-    h2.setAttribute("data-index", q);
-    quiz.appendChild(h2);
-    h2.textContent = questions[q];
-    var ul = document.createElement("ul");
-    quiz.appendChild(ul);
-    currentoptions = currentOptions();
+    if (q < 5) {
 
-    for (var i = 0; i < currentoptions.length; i++) {
+        console.log(q);
+        h2 = document.createElement("h2");
+        h2.setAttribute("data-index", q);
+        quiz.appendChild(h2);
+        h2.textContent = questions[q];
+        var ul = document.createElement("ul");
+        quiz.appendChild(ul);
+        currentoptions = currentOptions();
 
-        var li = document.createElement("li");
-        li.setAttribute("data-index", i);
-        li.textContent = currentoptions[i];
-        ul.appendChild(li);
+
+        for (var i = 0; i < currentoptions.length; i++) {
+
+            var li = document.createElement("li");
+            li.setAttribute("data-index", i);
+            li.textContent = currentoptions[i];
+            ul.appendChild(li);
+        }
+
+
     }
-    q = q + 1;
+    q++;
+
 }
 quiz.addEventListener("click", function (event) {
     var element = event.target;
 
     if (element.matches("li")) {
-        var index = element.parentElement.getAttribute("data-index");
-        console.log(index);
+        var optionIndex = element.getAttribute("data-index");
+        var questionIndex = h2.getAttribute("data-index");
+
+        if (optionIndex === questionIndex) {
+            isCorrect = true;
+        }
+        else if (optionIndex === 2 && questionIndex === 4) {
+            isCorrect = true;
+        }
+        else {
+            isIncorrect = true;
+        }
     }
 })
 // if (element.matches("button") === true) {
@@ -116,17 +151,20 @@ quiz.addEventListener("click", function (event) {
 //         }
 //     }
 function correctAnswer() {
-        score = score + 20;
-    }
+    score = score + 20;
+}
 
 // function incorrectAnswer() {
 
 //     }
+function setHighScore() {
+    localStorage.setItem("highscore", highscore);
+}
+function quizOver() {
+    q = 0;
+    setHighScore();
 
-// function quizOver() {
-//         q = 0;
-
-//     }
+}
 
 
     // if (q === 0) {

@@ -4,7 +4,8 @@ var timerElement = document.querySelector(".timer-count");
 var navHighScore = document.querySelector(".highscore");
 var quiz = document.querySelector(".quiz");
 var feedBack = document.querySelector("#feedback");
-
+var initials = document.querySelector("#initials");
+var initialsText = document.querySelector("#initials-text");
 
 var score = 0;
 var timerCount;
@@ -22,8 +23,6 @@ var h2;
 var h3;
 
 
-
-// console.log(q);
 startButton.addEventListener("click", startQuiz);
 
 getHighScore();
@@ -75,7 +74,6 @@ function startTimer() {
             }
             if (q == 6) {
                 quiz.textContent = " ";
-                console.log(q);
                 clearInterval(timer);
                 quizOver();
             }
@@ -105,8 +103,6 @@ function currentOptions() {
 function renderQuestion() {
     quiz.textContent = " ";
     if (q < 5) {
-
-        console.log(q);
         h2 = document.createElement("h2");
         h2.setAttribute("data-index", q);
         quiz.appendChild(h2);
@@ -123,8 +119,6 @@ function renderQuestion() {
             li.textContent = currentoptions[i];
             ul.appendChild(li);
         }
-
-
     }
     q++;
 
@@ -133,41 +127,23 @@ quiz.addEventListener("click", function (event) {
     var element = event.target;
 
     if (element.matches("li")) {
-        var optionIndex = element.getAttribute("data-index");
-        var questionIndex = h2.getAttribute("data-index");
-console.log(questionIndex);
-console.log(optionIndex);
+        var optionIndex = Number(element.getAttribute("data-index"));
+        var questionIndex = Number(h2.getAttribute("data-index"));
+
         if (optionIndex === questionIndex) {
-            console.log(questionIndex);
-            console.log(optionIndex);
             isCorrect = true;
         }
-        else if (optionIndex == 2 && questionIndex == 4) {
+        else if (optionIndex === 2 && questionIndex === 4) {
             isCorrect = true;
-            console.log(questionIndex);
         }
         else {
             isIncorrect = true;
-            console.log(questionIndex);
-            console.log(optionIndex);
         }
     }
 })
-// if (element.matches("button") === true) {
-//     // Get its data-index value and remove the todo element from the list
-//     var index = element.parentElement.getAttribute("data-index");
-//     todos.splice(index, 1);
 
-// function checkCorrect() {
-//         // If the word equals the blankLetters array when converted to string, set isWin to true
-//         if (chosenWord === blanksLetters.join("")) {
-//             // This value is used in the timer function to test if win condition is met
-//             isCorrect = true;
-//         }
-//     }
 function correctAnswer() {
     score = score + 20;
-console.log(q);
     feedBack.textContent = "Correct!"
     feedBack.style.display = "block";
 }
@@ -177,27 +153,38 @@ function incorrectAnswer() {
     feedBack.style.display = "block";
 }
 function setHighScore() {
-    localStorage.setItem("highScore", highScore);
+    if (score > highScore) {
+        navHighScore.textContent = score;
+        localStorage.setItem("highScore", score);
+
+    }
+}
+function submitScore() {
+    h2 = document.createElement("h2");
+    quiz.appendChild(h2);
+    h2.textContent = "Finished!"
+    var h3 = document.createElement("h3");
+    quiz.appendChild(h3);
+    h3.textContent = "Your score: " + score;
+    initials.style.display ="block";
+   
+   
 }
 function quizOver() {
     q = 0;
     setHighScore();
-
-
+    submitScore();
 }
 
+initials.addEventListener("submit", function(event) {
+    event.preventDefault();
+  
+    var initialsInput = initialsText.value.trim();
 
-    // if (q === 0) {
-    //     currentoptions = options.slice(0, 4);
-    // }
-    // else if (q === 1) {
-    //     currentoptions = options.slice(4, 8);
-    // }
-    // else if (q === 2) {
-    //     currentoptions = options.slice(8, 12);
-    // }
-    // else if (q === 3) {
-    //     currentoptions = options.slice(12, 16);
-    // }
-    // else {
-    //     currentoptions = options.slice(16, 20);)
+    if(initialsInput === ""){
+        alert("Enter your initials");
+    }
+    localStorage.setItem("initials", (initialsInput));
+    
+})
+

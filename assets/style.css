@@ -9,6 +9,9 @@ main {
 .navhighscore {
     float: left;
 }
+.quiz p {
+    font-size: 20px;
+}
 
 #feedback {
     text-align: center;
@@ -23,13 +26,33 @@ ul {
     margin: auto;
     padding: 0;
 }
-li {
+ol {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+ul li {
     list-style-type: none;
     padding: 5px;
-    background-color: black;
+    background-color:rgba(31, 47, 138, 0.954);
     color: white;
     margin-bottom: 30px;
     font-size: 25px;
+}
+.highscore-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 0 300px;
+}
+
+ol li {
+    background-color:slateblue;
+    font-size: 25px;
+}
+ol li:nth-child(odd){
+    background-color:rgb(106, 140, 241)
 }
 .quiz {
     display: flex;
@@ -47,17 +70,20 @@ li {
       font-size: 60px;
       text-align: center;
       margin-top: 10%;
-      
+  }
+  h3 {
+      font-size: 40px;
+      font-weight: bold;
   }
   .timer-text {
     padding: 5px;
-    border: 5px solid chocolate;
+    border: 5px solid rgb(51, 33, 207);
   
-    background-color: burlywood;
+    background-color: rgb(135, 155, 222);
     float: right;
   }
 button {
-    background: radial-gradient(circle, rgba(240,230,140,1) 0%, rgba(187,96,33,0.9542191876750701) 100%);
+    background: radial-gradient(circle, rgb(144, 137, 240) 0%, rgba(31, 47, 138, 0.954) 100%);
     border-radius: 8px;
     color: #13293d;
     cursor: pointer;
@@ -72,9 +98,30 @@ button {
     transition-timing-function: linear;
     margin-top: 0.6em;
     align-self: center;
+    font-weight: bold;
   }
   #initials{
       display:none;
       text-align: center;
 font-size: 30px;
+
+flex-direction: column;
+align-items: center;
+  }
+  .flex {
+      display: flex;
+  }
+  #initials-text {
+      height: 30px;
+      width: 100px;
+      margin-top: 20px;
+  }
+
+  .highscore-container button {
+      font-size: 1em;
+      
+  }
+  #initials button {
+      font-size: 1em;
+      
   }

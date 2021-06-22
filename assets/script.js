@@ -6,6 +6,7 @@ var quiz = document.querySelector(".quiz");
 var feedBack = document.querySelector("#feedback");
 var initials = document.querySelector("#initials");
 var initialsText = document.querySelector("#initials-text");
+var initialsButton = document.querySelector(".initialsButton");
 
 var score = 0;
 var timerCount;
@@ -42,7 +43,7 @@ function getHighScore() {
     return highScore;
 }
 function startQuiz() {
-    timerCount = 45;
+    timerCount = 30;
     renderQuestion()
     startTimer()
 }
@@ -77,6 +78,7 @@ function startTimer() {
         // Tests if time has run out
         if (timerCount <= 0) {
             // Clears interval
+            quiz.textContent = " ";
             timerCount = 0;
             clearInterval(timer);
             timerElement.textContent = timerCount;
@@ -167,11 +169,13 @@ function submitScore() {
     var h3 = document.createElement("h3");
     quiz.appendChild(h3);
     h3.textContent = "Your score: " + score;
-    initials.style.display = "block";
+    initials.style.display = "flex";
+    var button = document.createElement("button");
+    initials.appendChild(button);
+    button.textContent = "Submit";
 }
 //question counter back to 0, saves high score and calls function to render to submit initials
 function quizOver() {
-    q = 0;
     setHighScore();
     submitScore();
 }
@@ -182,21 +186,27 @@ initials.addEventListener("submit", function (event) {
     if (initialsInput === "") {
         alert("Enter your initials");
     }
+    else if(initialsInput != ""){
     localStorage.setItem("initials", (initialsInput));
     displayHighScores();
+    }
 })
 
-function displayHighScores() {
+function displayHighScores(){ 
     container.textContent = " ";
     h2 = document.createElement("h2");
-    container.appendChild(h2);
-    h2.textContent = "Highscores"
+    var div = document.createElement("div");
+    container.appendChild(div);
+    div.classList.add("highscore-container");
+    div.appendChild(h2);
+    h2.textContent = "Highscores";
     var newHighScore = getHighScore();
     storedInitials = localStorage.getItem("initials");
     ol = document.createElement("ol");
     li = document.createElement("li");
-    container.appendChild(ol);
-    container.appendChild(li);
+    div.appendChild(ol);
+    ol.appendChild(li);
     li.textContent = storedInitials + " " + newHighScore;
-
 }
+
+

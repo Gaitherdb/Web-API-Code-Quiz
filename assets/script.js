@@ -14,9 +14,9 @@ var timer;
 var isCorrect = false;
 var isIncorrect = false;
 var highScore;
-var questions = ["Q1", "Q2", "Q3", "Q4", "Q5"];
+var questions = ["Primitive value \"John Doe\" is a:", "If var x = 3 and var = \"3\" then x + y = ?", "What does DOM stand for?", "What symbols are used for commenting in Javascript?", "For, while, & do...while are types of what?"];
 var q = 0;
-var options = ["first question", "opt 2", "opt 3", "opt 4", "2nd question", "opt2.2", "option 3.2", "option 4.2", "3rd question", "opt 2.3", "option 3.3", "option 4.3", "4th question", "opt 2.4", "opt 3.4", "option 4.4", "5th question", "opt 2.5", "option 3.5", "option 4.5"];
+var options = ["String", "Boolean", "Number", "Biginit", "3, 3", "\"33\"", "3\"3\"", "\"6\"", "Do Or Move", "Dominant Operator Mode", "Document Object Model", "Domain Online Monitor", "**", "^^", "%%", "//", "Commands", "If statements", "Loops", "Variables"];
 var currentoptions;
 var x = 0;
 var y = 4;
@@ -159,7 +159,6 @@ function setHighScore() {
     if (score > highScore) {
         navHighScore.textContent = score;
         localStorage.setItem("highScore", score);
-
     }
 }
 //Shows your score and reveals initials input
@@ -186,13 +185,13 @@ initials.addEventListener("submit", function (event) {
     if (initialsInput === "") {
         alert("Enter your initials");
     }
-    else if(initialsInput != ""){
-    localStorage.setItem("initials", (initialsInput));
-    displayHighScores();
+    else if (initialsInput != "") {
+        localStorage.setItem("initials", (initialsInput));
+        displayHighScores();
     }
 })
 
-function displayHighScores(){ 
+function displayHighScores() {
     container.textContent = " ";
     h2 = document.createElement("h2");
     var div = document.createElement("div");

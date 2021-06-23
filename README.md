@@ -1,6 +1,6 @@
 # Web API Coding Quiz
 
-This webpage presents a timed quiz on coding. 
+This webpage presents a timed quiz on Javascript. 
 
 ## Functionality
 

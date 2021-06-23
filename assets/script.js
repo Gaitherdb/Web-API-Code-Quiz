@@ -14,7 +14,7 @@ var timer;
 var isCorrect = false;
 var isIncorrect = false;
 var highScore;
-var questions = ["Primitive value \"John Doe\" is a:", "If var x = 3 and var y = \"3\" then x + y = ?", "What does DOM stand for?", "What symbols are used for commenting in Javascript?", "For, while, & do...while are types of what?"];
+var questions = ["Primitive value \"John Doe\" is a:", "If var x = 3 and var y = \"3\" then x + y = ?", "What does DOM stand for?", "What symbols are used for commenting?", "For, while, & do...while are types of what?"];
 var q = 0;
 var options = ["String", "Boolean", "Number", "Biginit", "3, 3", "\"33\"", "3\"3\"", "\"6\"", "Do Or Move", "Dominant Operator Mode", "Document Object Model", "Domain Online Monitor", "**", "^^", "%%", "//", "Commands", "If statements", "Loops", "Variables"];
 var currentoptions;
@@ -43,7 +43,7 @@ function getHighScore() {
     return highScore;
 }
 function startQuiz() {
-    timerCount = 30;
+    timerCount = 45;
     renderQuestion()
     startTimer()
 }

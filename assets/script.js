@@ -173,7 +173,7 @@ function submitScore() {
     initials.appendChild(button);
     button.textContent = "Submit";
 }
-//question counter back to 0, saves high score and calls function to render to submit initials
+//saves high score and calls function to render to submit initials
 function quizOver() {
     setHighScore();
     submitScore();

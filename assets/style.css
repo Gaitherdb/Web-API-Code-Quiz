@@ -1,127 +1,129 @@
 body {
-    margin:0;
-    padding:0;
+  margin: 0;
+  padding: 0;
 }
 
 main {
-   margin: 0;
-  }
+  margin: 0;
+}
 .navhighscore {
-    float: left;
+  float: left;
 }
 .quiz p {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 #feedback {
-    text-align: center;
+  text-align: center;
 }
 .inline {
-    display: inline;
+  display: inline;
 }
 .timer-count {
-text-align: center;
+  text-align: center;
 }
 ul {
-    margin: auto;
-    padding: 0;
+  margin: auto;
+  padding: 0;
 }
 ol {
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 ul li {
-    list-style-type: none;
-    padding: 5px;
-    background-color:rgba(31, 47, 138, 0.954);
-    color: white;
-    margin-bottom: 30px;
-    font-size: 25px;
+  list-style-type: none;
+  padding: 5px;
+  background-color: rgba(31, 47, 138, 0.954);
+  color: white;
+  margin-bottom: 30px;
+  font-size: 25px;
 }
 .highscore-container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    margin: 0 300px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 0 300px;
 }
 
 ol li {
-    background-color:slateblue;
-    font-size: 25px;
+  background-color: slateblue;
+  font-size: 25px;
 }
-ol li:nth-child(odd){
-    background-color:rgb(106, 140, 241)
+ol li:nth-child(odd) {
+  background-color: rgb(106, 140, 241);
 }
 .quiz {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    padding: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 5%;
 }
-  h1 {
-      font-size: 20px;
-      text-align: center;
-  }
-  h2 {
-      font-size: 60px;
-      text-align: center;
-      margin-top: 10%;
-  }
-  h3 {
-      font-size: 40px;
-      font-weight: bold;
-  }
-  .timer-text {
-    padding: 5px;
-    border: 5px solid rgb(51, 33, 207);
-  
-    background-color: rgb(135, 155, 222);
-    float: right;
-  }
+h1 {
+  font-size: 20px;
+  text-align: center;
+}
+h2 {
+  font-size: 60px;
+  text-align: center;
+  margin-top: 10%;
+}
+h3 {
+  font-size: 40px;
+  font-weight: bold;
+}
+.timer-text {
+  padding: 5px;
+  border: 5px solid rgb(51, 33, 207);
+
+  background-color: rgb(135, 155, 222);
+  float: right;
+}
 button {
-    background: radial-gradient(circle, rgb(144, 137, 240) 0%, rgba(31, 47, 138, 0.954) 100%);
-    border-radius: 8px;
-    color: #13293d;
-    cursor: pointer;
-    font-size: 2em;
-    letter-spacing: 0.21px;
-    line-height: 16px;
-    max-width: 255px;
-    padding: 20px 52px;
-    text-align: center;
-    transition-duration: 0.15s;
-    transition-property: background-color;
-    transition-timing-function: linear;
-    margin-top: 0.6em;
-    align-self: center;
-    font-weight: bold;
-  }
-  #initials{
-      display:none;
-      text-align: center;
-font-size: 30px;
+  background: radial-gradient(
+    circle,
+    rgb(144, 137, 240) 0%,
+    rgba(31, 47, 138, 0.954) 100%
+  );
+  border-radius: 8px;
+  color: #13293d;
+  cursor: pointer;
+  font-size: 2em;
+  letter-spacing: 0.21px;
+  line-height: 16px;
+  max-width: 255px;
+  padding: 20px 52px;
+  text-align: center;
+  transition-duration: 0.15s;
+  transition-property: background-color;
+  transition-timing-function: linear;
+  margin-top: 0.6em;
+  align-self: center;
+  font-weight: bold;
+}
+#initials {
+  display: none;
+  text-align: center;
+  font-size: 30px;
 
-flex-direction: column;
-align-items: center;
-  }
-  .flex {
-      display: flex;
-  }
-  #initials-text {
-      height: 30px;
-      width: 100px;
-      margin-top: 20px;
-  }
+  flex-direction: column;
+  align-items: center;
+}
+.flex {
+  display: flex;
+}
+#initials-text {
+  height: 30px;
+  width: 100px;
+  margin-top: 20px;
+}
 
-  .highscore-container button {
-      font-size: 1em;
-      
-  }
-  #initials button {
-      font-size: 1em;
-      
-  }
+.highscore-container button {
+  font-size: 1em;
+}
+#initials button {
+  font-size: 1em;
+}

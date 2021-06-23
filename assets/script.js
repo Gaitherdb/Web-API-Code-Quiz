@@ -201,11 +201,20 @@ function displayHighScores() {
     h2.textContent = "Highscores";
     var newHighScore = getHighScore();
     storedInitials = localStorage.getItem("initials");
-    ol = document.createElement("ol");
-    li = document.createElement("li");
+    var ol = document.createElement("ol");
+    var li = document.createElement("li");
     div.appendChild(ol);
     ol.appendChild(li);
     li.textContent = storedInitials + " " + newHighScore;
+    var btn = document.createElement("button");
+    btn.textContent = "Try Again?";
+    btn.classList.add("refresh");
+    div.appendChild(btn);
+    refreshBtn = document.querySelector(".refresh");
+    refreshBtn.addEventListener("click", function(){
+        location.reload();
+    })
+
 }
 
 
